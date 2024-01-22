@@ -23,7 +23,7 @@ import {
   BsSnow,
 } from "react-icons/bs";
 import { CgSwiss } from "react-icons/cg";
-import { FaRegUser } from "react-icons/fa";
+import { FaBusinessTime, FaRegUser } from "react-icons/fa";
 import { FiInstagram, FiSettings } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { HiOutlineSquare3Stack3D } from "react-icons/hi2";
@@ -52,6 +52,7 @@ import { VscMenu, VscSettings } from "react-icons/vsc";
 
 export const Icons = {
   AddCircle: (props: IconBaseProps) => <MdOutlineAddCircle {...props} />,
+  Business: (props: IconBaseProps) => <FaBusinessTime {...props} />,
   Droplet: (props: IconBaseProps) => <BsDroplet {...props} />,
   Dial: (props: IconBaseProps) => <MdOutlineDialpad {...props} />,
   Delete: (props: IconBaseProps) => <AiFillDelete {...props} />,

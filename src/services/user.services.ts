@@ -3,7 +3,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/utils"; // Import your Firebase Auth and Firestore instances
 import { CreateUser, Login } from "../types/user";
 import { DB } from "./constants";
@@ -76,6 +76,47 @@ export const userServices = {
       console.log("Password reset email sent successfully.");
     } catch (error) {
       console.error("Error sending password reset email:", error);
+      throw error;
+    }
+  },
+  addFeatureToUser: async ({
+    userId,
+    newFeature,
+  }: {
+    userId: string;
+    newFeature: string;
+  }) => {
+    try {
+      // Get the current user document
+      const userDocRef = doc(db, DB.USERS, userId);
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+
+        // Check if the user already has the new feature
+        const hasFeature =
+          userData.features && userData.features.includes(newFeature);
+
+        // If the user doesn't have the feature, update the document
+        if (!hasFeature) {
+          await updateDoc(userDocRef, {
+            features: arrayUnion(newFeature),
+          });
+
+          console.log(
+            `Feature '${newFeature}' added to user with ID: ${userId}`
+          );
+        } else {
+          console.log(
+            `User with ID: ${userId} already has the feature '${newFeature}'`
+          );
+        }
+      } else {
+        console.log(`User with ID: ${userId} not found`);
+      }
+    } catch (error) {
+      console.error("Error adding feature to user:", error);
       throw error;
     }
   },
