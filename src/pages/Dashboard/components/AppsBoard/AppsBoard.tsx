@@ -5,14 +5,25 @@ import AddFeature from "./components/AddFeature";
 import useAppsBoard from "./useAppsBoard";
 
 const AppsBoard = () => {
-  const { openPopup, setOpenPopup } = useAppsBoard();
+  const { openPopup, setOpenPopup, listFeatures } = useAppsBoard();
   return (
     <>
       <Paper>
-        <AddButton onClick={() => setOpenPopup(true)} />
+        <div style={{ display: "flex", columnGap: "20px" }}>
+          {listFeatures.map((feature) => {
+            return (
+              <AddButton
+                style={{ backgroundColor: feature.color }}
+                key={feature.id}
+                icon={feature.icon}
+              />
+            );
+          })}
+          <AddButton onClick={() => setOpenPopup(true)} />
+        </div>
       </Paper>
       <Popup openPopup={openPopup} onClose={() => setOpenPopup(false)}>
-        <AddFeature />
+        <AddFeature setOpenPopup={setOpenPopup} />
       </Popup>
     </>
   );

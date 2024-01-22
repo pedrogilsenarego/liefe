@@ -1,22 +1,26 @@
 import Loader from "../../../../../../components/Loader";
 import AddButton from "../../../../../../components/Ui/Buttons/AddButton";
-import { features } from "../../../../../../constants/features";
 import { Feature } from "../../../../../../constants/types";
-import { Colors } from "../../../../../../theme/theme";
 import useAddFeature from "./useAddFeature";
 
-const AddFeature = () => {
-  const { handleAddFeature, isAddingFeature } = useAddFeature();
+interface Props {
+  setOpenPopup: (value: boolean) => void;
+}
+
+const AddFeature = ({ setOpenPopup }: Props) => {
+  const { handleAddFeature, isAddingFeature, listFeatures } = useAddFeature({
+    setOpenPopup,
+  });
   return isAddingFeature ? (
     <Loader />
   ) : (
     <>
-      {features.map((feature: Feature) => {
+      {listFeatures.map((feature: Feature) => {
         return (
           <AddButton
             key={feature.name}
             onClick={() => handleAddFeature(feature.id)}
-            style={{ backgroundColor: Colors.tealc[400] }}
+            style={{ backgroundColor: feature.color }}
             icon={feature.icon}
           />
         );

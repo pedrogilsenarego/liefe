@@ -41,6 +41,7 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 import {
+  PiCarSimpleBold,
   PiFan,
   PiLightbulbThin,
   PiThermometerHotDuotone,
@@ -53,6 +54,7 @@ import { VscMenu, VscSettings } from "react-icons/vsc";
 export const Icons = {
   AddCircle: (props: IconBaseProps) => <MdOutlineAddCircle {...props} />,
   Business: (props: IconBaseProps) => <FaBusinessTime {...props} />,
+  Car: (props: IconBaseProps) => <PiCarSimpleBold {...props} />,
   Droplet: (props: IconBaseProps) => <BsDroplet {...props} />,
   Dial: (props: IconBaseProps) => <MdOutlineDialpad {...props} />,
   Delete: (props: IconBaseProps) => <AiFillDelete {...props} />,

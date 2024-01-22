@@ -107,13 +107,23 @@ export const userServices = {
           console.log(
             `Feature '${newFeature}' added to user with ID: ${userId}`
           );
+
+          // Fetch and return the updated user data after the update
+          const updatedUserDoc = await getDoc(userDocRef);
+          const updatedUserData = updatedUserDoc.data();
+
+          return { ...updatedUserData, docId: updatedUserDoc.id };
         } else {
           console.log(
             `User with ID: ${userId} already has the feature '${newFeature}'`
           );
+          // Return the existing user data
+          return { ...userData, docId: userDoc.id };
         }
       } else {
         console.log(`User with ID: ${userId} not found`);
+        // Return null if user not found
+        return null;
       }
     } catch (error) {
       console.error("Error adding feature to user:", error);

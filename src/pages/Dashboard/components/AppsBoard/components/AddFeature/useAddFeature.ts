@@ -1,12 +1,23 @@
 import { useMutation } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { features } from "../../../../../../constants/features";
 import { State } from "../../../../../../redux/types";
+import { setUser } from "../../../../../../redux/user/actions";
 import { userServices } from "../../../../../../services/user.services";
 import { CurrentUser } from "../../../../../../types/user";
 
-const useAddFeature = () => {
+interface Props {
+  setOpenPopup: (value: boolean) => void;
+}
+
+const useAddFeature = ({ setOpenPopup }: Props) => {
+  const dispatch = useDispatch();
   const currentUser = useSelector<State, CurrentUser | null>(
     (state) => state.user.currentUser
+  );
+
+  const listFeatures = features.filter(
+    (feature) => !currentUser?.features.includes(feature.id)
   );
 
   const { mutate: signInMutation, isLoading: isAddingFeature } = useMutation(
@@ -15,7 +26,10 @@ const useAddFeature = () => {
       onError: (error: any) => {
         console.log("error", error);
       },
-      onSuccess: (data: any) => {},
+      onSuccess: (data: any) => {
+        dispatch(setUser(data as CurrentUser));
+        setOpenPopup(false);
+      },
     }
   );
   const handleAddFeature = (feature: string) => {
@@ -26,7 +40,7 @@ const useAddFeature = () => {
     };
     signInMutation(payload);
   };
-  return { handleAddFeature, isAddingFeature };
+  return { handleAddFeature, isAddingFeature, listFeatures };
 };
 
 export default useAddFeature;

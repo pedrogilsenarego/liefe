@@ -6,6 +6,7 @@ export const roles = {
 export type CurrentUser = {
   username: string;
   email: string;
+  features: string[];
   role: (typeof roles)[keyof typeof roles][];
   phone: string;
   fullName: string;
