@@ -2,10 +2,10 @@ import { Box, Grid, Typography } from "@mui/material";
 import { Icons } from "../../../../../../components/Icons";
 import ControlledFormInput from "../../../../../../components/Inputs/ControlledInput";
 
-import Loader from "../../../../../../components/Loader";
-import Button from "../../../../../../components/Ui/Button";
+import Button from "../../../../../../components/Ui/Buttons/Button";
 import { i18n } from "../../../../../../translations/i18n";
 
+import Loader from "../../../../../../components/Loader";
 import useStyles from "./styles";
 import useRegister from "./useRegister";
 

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ControlledFormInput from "../../../../../../components/Inputs/ControlledInput";
 import Loader from "../../../../../../components/Loader";
-import Button from "../../../../../../components/Ui/Button";
+import Button from "../../../../../../components/Ui/Buttons/Button";
 import { Colors, mainColors } from "../../../../../../theme/theme";
 import { i18n } from "../../../../../../translations/i18n";
 import useStyles from "./styles";

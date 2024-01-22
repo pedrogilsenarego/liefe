@@ -1,4 +1,4 @@
-import { CSS, Colors } from "../../../theme/theme";
+import { CSS, Colors } from "../../../../theme/theme";
 
 interface Props {
   hover: boolean;

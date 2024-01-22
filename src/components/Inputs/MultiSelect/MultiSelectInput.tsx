@@ -26,7 +26,7 @@ import {
   useForm,
 } from "react-hook-form";
 import { Colors } from "../../../theme/theme";
-import Button from "../../Ui/Button";
+import Button from "../../Ui/Buttons/Button";
 import * as Styled from "./styles";
 
 interface MultiSelectProps<T> {

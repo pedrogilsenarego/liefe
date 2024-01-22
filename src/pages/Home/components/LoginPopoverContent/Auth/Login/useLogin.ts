@@ -29,7 +29,7 @@ const useLogin = () => {
       onSuccess: (data: any) => {
         dispatch(setUser(data?.userData as CurrentUser));
         reset();
-        navigate(ROUTE_PATHS.HOME);
+        navigate(ROUTE_PATHS.DASHOARD);
       },
     }
   );

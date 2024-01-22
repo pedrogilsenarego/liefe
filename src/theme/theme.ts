@@ -51,6 +51,7 @@ export const mainColors = {
   secondary: {
     400: Colors.redish[400],
     40050: Colors.redish[40050],
+    contrast: Colors.white[400],
   },
 };
 

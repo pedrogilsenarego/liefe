@@ -12,7 +12,7 @@ import { mainColors } from "../../theme/theme";
 import { i18n } from "../../translations/i18n";
 import CustomizedAccordions from "../Accordion";
 import Popup from "../Popup";
-import Button from "../Ui/Button";
+import Button from "../Ui/Buttons/Button";
 
 type Props = {
   openPopup: boolean;

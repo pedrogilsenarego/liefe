@@ -35,6 +35,7 @@ import {
 } from "react-icons/lia";
 import { LuBookOpen } from "react-icons/lu";
 import {
+  MdOutlineAddCircle,
   MdOutlineDialpad,
   MdOutlineEdit,
   MdOutlineKeyboardArrowDown,
@@ -50,6 +51,7 @@ import { TiArrowLeft, TiArrowRight } from "react-icons/ti";
 import { VscMenu, VscSettings } from "react-icons/vsc";
 
 export const Icons = {
+  AddCircle: (props: IconBaseProps) => <MdOutlineAddCircle {...props} />,
   Droplet: (props: IconBaseProps) => <BsDroplet {...props} />,
   Dial: (props: IconBaseProps) => <MdOutlineDialpad {...props} />,
   Delete: (props: IconBaseProps) => <AiFillDelete {...props} />,
