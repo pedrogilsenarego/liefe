@@ -4,13 +4,14 @@ import { Typography } from "@mui/material";
 
 import { createContext } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import Paper from "../../../components/Ui/Paper";
 import { State } from "../../../redux/types";
 import { ROUTE_PATHS } from "../../../routes/constants";
 import { businessServices } from "../../../services/business.services";
 import { queryIdentifiers } from "../../../services/constants";
+import { Colors, mainColors } from "../../../theme/theme";
 import { BusinessData } from "../../../types/business";
 import { CurrentUser } from "../../../types/user";
 
@@ -35,6 +36,7 @@ const LayoutBusinessDetail = ({ children }: Props) => {
   const queryKey = [queryIdentifiers.BUSINESS_DETAIL, businessId];
   const businessDocId = businessId || "";
   const userId = currentUser?.docId || "";
+  const location = useLocation();
   // Use useQuery hook to fetch business details
   const {
     data: businessData,
@@ -64,37 +66,85 @@ const LayoutBusinessDetail = ({ children }: Props) => {
     return <div>Business ID or User ID is missing</div>;
   }
 
+  console.log(location.pathname);
+
   return (
     <BusinessDataContext.Provider value={{ businessData, refetch }}>
-      <div style={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
-        <Paper>
-          <div style={{ display: "flex", columnGap: "10px" }}>
-            <Typography
-              onClick={() =>
-                navigate(
-                  ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
-                    ":businessId",
-                    businessId
-                  )
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            columnGap: "20px",
+
+            paddingLeft: "20px",
+          }}
+        >
+          <Typography
+            style={{
+              cursor: "pointer",
+              color:
+                location.pathname ===
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
+                  ":businessId",
+                  businessId
                 )
-              }
-            >
-              {businessData?.businessName}
-            </Typography>
-            <Typography
-              onClick={() =>
-                navigate(
-                  ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
-                    ":businessId",
-                    businessId
-                  )
+                  ? mainColors.secondary.contrast
+                  : Colors.white[40050],
+              padding: "10px 10px",
+              borderBottom:
+                location.pathname ===
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
+                  ":businessId",
+                  businessId
                 )
-              }
-            >
-              Definitions
-            </Typography>
-          </div>
-        </Paper>
+                  ? `1px solid ${mainColors.secondary.contrast}`
+                  : "none",
+            }}
+            onClick={() =>
+              navigate(
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
+                  ":businessId",
+                  businessId
+                )
+              )
+            }
+          >
+            {businessData?.businessName}
+          </Typography>
+          <Typography
+            style={{
+              cursor: "pointer",
+              color:
+                location.pathname ===
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
+                  ":businessId",
+                  businessId
+                )
+                  ? mainColors.secondary.contrast
+                  : Colors.white[40050],
+              padding: "10px 10px",
+              borderBottom:
+                location.pathname ===
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
+                  ":businessId",
+                  businessId
+                )
+                  ? `1px solid ${mainColors.secondary.contrast}`
+                  : "none",
+            }}
+            onClick={() =>
+              navigate(
+                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
+                  ":businessId",
+                  businessId
+                )
+              )
+            }
+          >
+            Definitions
+          </Typography>
+        </div>
+
         {children}
       </div>
     </BusinessDataContext.Provider>
