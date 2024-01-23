@@ -9,12 +9,17 @@ export interface TaxDetailsPT {
   };
 }
 
-export interface BusinessData {
-  businessName: string;
-  userId: string;
+export interface BusinessSettings {
   taxControl: {
     active: boolean;
     taxCountry: string;
-    taxDetails: any;
+    taxDetails: TaxDetailsPT;
   };
+}
+
+export interface BusinessData {
+  docId: string;
+  businessName: string;
+  userId: string;
+  settings: BusinessSettings;
 }

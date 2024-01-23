@@ -25,7 +25,7 @@ export const mapTaxSettings = (
           <ControlledSelect
             control={control}
             name="taxPTIVAPercentage"
-            options={[{ label: "23%", value: "0.23" }]}
+            options={[{ label: "23%", value: 0.23 }]}
           />
           <ControlledCheckBox
             name="taxPTIRSActive"
@@ -35,7 +35,7 @@ export const mapTaxSettings = (
           <ControlledSelect
             control={control}
             name="taxPTIRSPercentage"
-            options={[{ label: "10%", value: "0.1" }]}
+            options={[{ label: "10%", value: 0.1 }]}
           />
         </>
       );

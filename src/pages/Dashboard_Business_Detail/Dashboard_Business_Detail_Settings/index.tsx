@@ -7,8 +7,14 @@ import TaxDetails from "./components/TaxDetails";
 import useDashboardBusinessDetailSettings from "./useDashboardBusinessDetailSettings";
 
 const Dashboard_Business_Detail_Settings = () => {
-  const { taxControlActive, taxCountry, control, handleSubmit, onSubmit } =
-    useDashboardBusinessDetailSettings();
+  const {
+    taxControlActive,
+    taxCountry,
+    control,
+    handleSubmit,
+    onSubmit,
+    isLoading,
+  } = useDashboardBusinessDetailSettings();
   return (
     <>
       {" "}
@@ -52,6 +58,7 @@ const Dashboard_Business_Detail_Settings = () => {
           }}
         >
           <Button
+            isLoading={isLoading}
             fullWidth
             darkenColors
             type="submit"

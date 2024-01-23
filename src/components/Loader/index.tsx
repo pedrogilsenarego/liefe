@@ -21,7 +21,7 @@ const Loader = ({
   return (
     <Box
       style={{
-        height: "87vh",
+        height: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

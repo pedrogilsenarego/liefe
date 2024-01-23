@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase/utils";
-import { BusinessData } from "../types/business";
+import { BusinessData, BusinessSettings } from "../types/business";
 import { Bussiness } from "../types/user";
 import { DB } from "./constants";
 
@@ -126,6 +126,49 @@ export const businessServices = {
       return businessDocsData;
     } catch (error) {
       console.error("Error getting business documents:", error);
+      throw error;
+    }
+  },
+
+  updateBusinessSettings: async ({
+    businessDocId,
+    userId,
+    settings,
+  }: {
+    businessDocId: string;
+    userId: string;
+    settings: BusinessSettings;
+  }) => {
+    console.log(`Updating settings for business with ID: ${businessDocId}`);
+    try {
+      // Step 1: Get the business document from the 'business' collection
+      const businessDocRef = doc(db, DB.BUSINESS, businessDocId);
+      const businessDoc = await getDoc(businessDocRef);
+
+      if (businessDoc.exists()) {
+        // Step 2: Check if the user has access to this business
+        const businessData = businessDoc.data();
+        if (businessData.userId === userId) {
+          // User has access, update the settings field
+          await updateDoc(businessDocRef, {
+            settings: { ...businessData.settings, ...settings },
+          });
+
+          console.log(
+            `Settings updated for business with ID: ${businessDocId}`
+          );
+        } else {
+          // User doesn't have access, throw an error
+          throw new Error(
+            "User doesn't have access to update settings for this business"
+          );
+        }
+      } else {
+        // Business document not found, throw an error
+        throw new Error("Business document not found");
+      }
+    } catch (error) {
+      console.error("Error updating business settings:", error);
       throw error;
     }
   },

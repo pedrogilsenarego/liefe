@@ -16,8 +16,10 @@ import { CurrentUser } from "../../../types/user";
 
 export const BusinessDataContext = createContext<{
   businessData: BusinessData | null | undefined;
+  refetch?: () => void;
 }>({
   businessData: null,
+  refetch: () => {},
 });
 
 interface Props {
@@ -39,6 +41,7 @@ const LayoutBusinessDetail = ({ children }: Props) => {
     isLoading,
     isError,
     error: businessError,
+    refetch,
   } = useQuery(
     queryKey,
     () => businessServices.getBusiness({ businessDocId, userId }),
@@ -62,7 +65,7 @@ const LayoutBusinessDetail = ({ children }: Props) => {
   }
 
   return (
-    <BusinessDataContext.Provider value={{ businessData }}>
+    <BusinessDataContext.Provider value={{ businessData, refetch }}>
       <Paper>
         <div style={{ display: "flex", columnGap: "10px" }}>
           <Typography
