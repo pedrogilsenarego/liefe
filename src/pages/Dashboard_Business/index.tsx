@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Button from "../../components/Ui/Buttons/Button";
+import Paper from "../../components/Ui/Paper";
 import { ROUTE_PATHS } from "../../routes/constants";
 import useDashboard_Business from "./useDashboard_Business";
 
@@ -13,7 +14,7 @@ const Dashboard_Business = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
+    <Paper>
       <input value={input} onChange={(e) => setInput(e.target.value)} />
       <Button onClick={() => handleCreateNewBusiness(input)}>
         Add New Business +
@@ -43,7 +44,7 @@ const Dashboard_Business = () => {
           );
         })}
       </div>
-    </>
+    </Paper>
   );
 };
 export default Dashboard_Business;

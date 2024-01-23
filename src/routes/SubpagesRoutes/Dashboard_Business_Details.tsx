@@ -1,5 +1,6 @@
 import WithAuth from "../../hoc/withAuth";
 import DashboardLayout from "../../layouts/DashBoardLayout";
+import MainLayout from "../../layouts/MainLayout";
 import LayoutBusinessDetail from "../../pages/Dashboard_Business_Detail/LayoutBusinessDetail";
 
 import { ROUTE_PATHS } from "../constants";
@@ -8,11 +9,13 @@ import { RoutesI } from "../routesImport";
 const wrapWithLayoutAndAccess = (Component: React.ComponentType) => {
   return (
     <WithAuth>
-      <DashboardLayout>
-        <LayoutBusinessDetail>
-          <Component />
-        </LayoutBusinessDetail>
-      </DashboardLayout>
+      <MainLayout>
+        <DashboardLayout>
+          <LayoutBusinessDetail>
+            <Component />
+          </LayoutBusinessDetail>
+        </DashboardLayout>
+      </MainLayout>
     </WithAuth>
   );
 };

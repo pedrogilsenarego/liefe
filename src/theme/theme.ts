@@ -51,6 +51,7 @@ export const Colors = {
     40010: "#0000001A",
     40025: "#00000040",
     40050: "#00000080",
+    40080: "#000000CC",
   },
   blackish: {
     400: "#1A2032",
@@ -61,15 +62,17 @@ export const Colors = {
 };
 
 export const mainColors = {
-  primary: {
+  secondary: {
     400: Colors.blackish[400],
-    40005: Colors.blackish[40005],
     40025: Colors.blackish[40025],
     40080: Colors.blackish[40080],
+    contrast: Colors.white[400],
   },
-  secondary: {
-    400: Colors.redish[400],
-    40050: Colors.redish[40050],
+  primary: {
+    400: Colors.black[400],
+    40005: Colors.black[40005],
+    40025: Colors.black[40025],
+    40080: Colors.black[40080],
     contrast: Colors.white[400],
   },
 };
@@ -81,7 +84,7 @@ export const theme = createTheme({
       fontWeight: 400,
       textTransform: "none",
       fontSize: 16,
-      color: Colors.blackish[400],
+      color: mainColors.secondary.contrast,
       caretColor: "transparent",
     },
   },

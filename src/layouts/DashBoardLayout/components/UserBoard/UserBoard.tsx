@@ -1,12 +1,12 @@
-import Paper from "../../../../components/Ui/Paper";
+import { Typography } from "@mui/material";
 import useUserBoard from "./useUserBoard";
 
 const UserBoard = () => {
   const { currentUser } = useUserBoard();
   return (
-    <Paper paperStyles={{ height: "100%" }}>
-      UserBoard: {currentUser?.username}
-    </Paper>
+    <Typography style={{ fontSize: "30px", textTransform: "capitalize" }}>
+      {currentUser?.username}
+    </Typography>
   );
 };
 export default UserBoard;

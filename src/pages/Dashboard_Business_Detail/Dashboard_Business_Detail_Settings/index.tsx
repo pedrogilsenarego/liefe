@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 import ControlledCheckBox from "../../../components/Inputs/ControlledCheckBox";
 import ControlledSelect from "../../../components/Inputs/ControlledSelect";
 import Button from "../../../components/Ui/Buttons/Button";
+import Paper from "../../../components/Ui/Paper";
 import { Colors } from "../../../theme/theme";
 import TaxDetails from "./components/TaxDetails";
 import useDashboardBusinessDetailSettings from "./useDashboardBusinessDetailSettings";
@@ -16,7 +17,7 @@ const Dashboard_Business_Detail_Settings = () => {
     isLoading,
   } = useDashboardBusinessDetailSettings();
   return (
-    <>
+    <Paper>
       {" "}
       <form
         id="dashboard-business-detail-settings"
@@ -68,7 +69,7 @@ const Dashboard_Business_Detail_Settings = () => {
           </Button>
         </Box>
       </form>
-    </>
+    </Paper>
   );
 };
 export default Dashboard_Business_Detail_Settings;

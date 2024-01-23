@@ -66,35 +66,37 @@ const LayoutBusinessDetail = ({ children }: Props) => {
 
   return (
     <BusinessDataContext.Provider value={{ businessData, refetch }}>
-      <Paper>
-        <div style={{ display: "flex", columnGap: "10px" }}>
-          <Typography
-            onClick={() =>
-              navigate(
-                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
-                  ":businessId",
-                  businessId
+      <div style={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
+        <Paper>
+          <div style={{ display: "flex", columnGap: "10px" }}>
+            <Typography
+              onClick={() =>
+                navigate(
+                  ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
+                    ":businessId",
+                    businessId
+                  )
                 )
-              )
-            }
-          >
-            {businessData?.businessName}
-          </Typography>
-          <Typography
-            onClick={() =>
-              navigate(
-                ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
-                  ":businessId",
-                  businessId
+              }
+            >
+              {businessData?.businessName}
+            </Typography>
+            <Typography
+              onClick={() =>
+                navigate(
+                  ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS_SETTINGS.replace(
+                    ":businessId",
+                    businessId
+                  )
                 )
-              )
-            }
-          >
-            Definitions
-          </Typography>
-        </div>
-      </Paper>
-      {children}
+              }
+            >
+              Definitions
+            </Typography>
+          </div>
+        </Paper>
+        {children}
+      </div>
     </BusinessDataContext.Provider>
   );
 };

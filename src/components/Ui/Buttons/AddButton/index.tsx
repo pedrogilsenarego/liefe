@@ -14,9 +14,8 @@ const AddButton = ({ icon, ...props }: Props) => {
   return (
     <Button
       style={{
-        padding: "5px",
         backgroundColor: mainColors.secondary[400],
-        width: "60px",
+
         aspectRatio: 1,
         cursor: "pointer",
         borderRadius: "15%",
@@ -28,7 +27,7 @@ const AddButton = ({ icon, ...props }: Props) => {
       {icon ? (
         icon
       ) : (
-        <Icons.AddCircle size={"40px"} color={mainColors.secondary.contrast} />
+        <Icons.AddCircle size={"30px"} color={mainColors.secondary.contrast} />
       )}
     </Button>
   );

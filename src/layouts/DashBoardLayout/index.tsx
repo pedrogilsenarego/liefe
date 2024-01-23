@@ -19,8 +19,9 @@ const DashboardLayout = ({ children }: Props) => {
       <div>
         <div
           style={{
-            height: "100px",
             display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <UserBoard />

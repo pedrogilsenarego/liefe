@@ -10,7 +10,7 @@ export const features: Feature[] = [
     id: "business",
     color: Colors.tealc[400],
     icon: (
-      <Icons.Business size={"40px"} color={mainColors.secondary.contrast} />
+      <Icons.Business size={"30px"} color={mainColors.secondary.contrast} />
     ),
     route: ROUTE_PATHS.DASHBOARD_BUSINESS,
   },
@@ -18,14 +18,14 @@ export const features: Feature[] = [
     name: "Expenses",
     id: "expenses",
     color: Colors.pacificBlue[400],
-    icon: <Icons.Money size={"40px"} color={mainColors.secondary.contrast} />,
+    icon: <Icons.Money size={"30px"} color={mainColors.secondary.contrast} />,
     route: ROUTE_PATHS.DASHBOARD,
   },
   {
     name: "Vehicles",
     id: "vehicles",
     color: Colors.purple[400],
-    icon: <Icons.Car size={"40px"} color={mainColors.secondary.contrast} />,
+    icon: <Icons.Car size={"30px"} color={mainColors.secondary.contrast} />,
     route: ROUTE_PATHS.DASHBOARD,
   },
   {
@@ -33,7 +33,7 @@ export const features: Feature[] = [
     id: "schedule",
     color: Colors.purple[400],
     icon: (
-      <Icons.Calendar size={"40px"} color={mainColors.secondary.contrast} />
+      <Icons.Calendar size={"30px"} color={mainColors.secondary.contrast} />
     ),
     route: ROUTE_PATHS.DASHBOARD,
   },
