@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BusinessDataContext } from "../LayoutBusinessDetail";
 import { EditSettings } from "./types";
@@ -11,16 +11,23 @@ const useDashboardBusinessDetailSettings = () => {
   const defaultValues = {
     taxControlActive: businessData?.taxControl?.active ?? false,
     taxCountry: businessData?.taxControl?.taxCountry ?? "pt",
+    taxPTIVAActive: businessData?.taxControl?.taxDetails?.iva?.active ?? false,
+    taxPTIVAPercentage:
+      businessData?.taxControl?.taxDetails?.iva?.percentage ?? "0.23",
+    taxPTIRSActive: businessData?.taxControl?.taxDetails?.irs?.active ?? false,
+    taxPTIRSPercentage:
+      businessData?.taxControl?.taxDetails?.irs?.percentage ?? "0.1",
   };
-  const [taxControlActive, setTaxControlActive] = useState(
-    businessData?.taxControl?.active ?? false
-  );
 
-  const { reset, control, handleSubmit } = useForm<EditSettingsSchemaType>({
-    resolver: zodResolver(EditSettingsSchema),
-    defaultValues,
-    mode: "onChange",
-  });
+  const { reset, control, handleSubmit, watch } =
+    useForm<EditSettingsSchemaType>({
+      resolver: zodResolver(EditSettingsSchema),
+      defaultValues,
+      mode: "onChange",
+    });
+
+  const taxControlActive = watch("taxControlActive");
+  const taxCountry = watch("taxCountry");
 
   const onSubmit: SubmitHandler<EditSettingsSchemaType> = async (
     formData: EditSettings
@@ -29,7 +36,9 @@ const useDashboardBusinessDetailSettings = () => {
   };
   return {
     taxControlActive,
-    setTaxControlActive,
+
+    taxCountry,
+
     control,
     handleSubmit,
     onSubmit,

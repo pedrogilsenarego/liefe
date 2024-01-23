@@ -3,16 +3,12 @@ import ControlledCheckBox from "../../../components/Inputs/ControlledCheckBox";
 import ControlledSelect from "../../../components/Inputs/ControlledSelect";
 import Button from "../../../components/Ui/Buttons/Button";
 import { Colors } from "../../../theme/theme";
+import TaxDetails from "./components/TaxDetails";
 import useDashboardBusinessDetailSettings from "./useDashboardBusinessDetailSettings";
 
 const Dashboard_Business_Detail_Settings = () => {
-  const {
-    taxControlActive,
-    setTaxControlActive,
-    control,
-    handleSubmit,
-    onSubmit,
-  } = useDashboardBusinessDetailSettings();
+  const { taxControlActive, taxCountry, control, handleSubmit, onSubmit } =
+    useDashboardBusinessDetailSettings();
   return (
     <>
       {" "}
@@ -24,20 +20,24 @@ const Dashboard_Business_Detail_Settings = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <ControlledCheckBox
-                onClick={(value) => setTaxControlActive(value)}
                 name="taxControlActive"
                 control={control}
                 label="Activate Tax Control For this business"
               />
             </Grid>
             {taxControlActive && (
-              <Grid item xs={12}>
-                <ControlledSelect
-                  control={control}
-                  name="taxCountry"
-                  options={[{ label: "Portugal", value: "pt" }]}
-                />
-              </Grid>
+              <>
+                <Grid item xs={12}>
+                  <ControlledSelect
+                    control={control}
+                    name="taxCountry"
+                    options={[{ label: "Portugal", value: "pt" }]}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TaxDetails taxCountry={taxCountry} control={control} />
+                </Grid>
+              </>
             )}
           </Grid>
         </Box>
