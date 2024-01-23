@@ -3,4 +3,5 @@ export interface Feature {
   id: string;
   color: string;
   icon: React.ReactNode;
+  route: string;
 }

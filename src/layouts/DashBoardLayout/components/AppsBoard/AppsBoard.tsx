@@ -5,7 +5,8 @@ import AddFeature from "./components/AddFeature";
 import useAppsBoard from "./useAppsBoard";
 
 const AppsBoard = () => {
-  const { openPopup, setOpenPopup, listFeatures } = useAppsBoard();
+  const { openPopup, setOpenPopup, listFeatures, handleClickFeature } =
+    useAppsBoard();
   return (
     <>
       <Paper>
@@ -13,6 +14,7 @@ const AppsBoard = () => {
           {listFeatures.map((feature) => {
             return (
               <AddButton
+                onClick={() => handleClickFeature(feature.route)}
                 style={{ backgroundColor: feature.color }}
                 key={feature.id}
                 icon={feature.icon}

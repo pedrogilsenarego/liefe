@@ -16,9 +16,10 @@ const useAddFeature = ({ setOpenPopup }: Props) => {
     (state) => state.user.currentUser
   );
 
-  const listFeatures = features.filter(
-    (feature) => !currentUser?.features.includes(feature.id)
-  );
+  const listFeatures =
+    features.filter(
+      (feature) => !currentUser?.features?.includes(feature.id)
+    ) || [];
 
   const { mutate: signInMutation, isLoading: isAddingFeature } = useMutation(
     userServices.addFeatureToUser,

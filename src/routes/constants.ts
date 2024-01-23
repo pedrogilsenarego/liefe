@@ -1,4 +1,5 @@
 export const ROUTE_PATHS = {
   HOME: "/",
-  DASHOARD: "/dashboard",
+  DASHBOARD: "/dashboard",
+  DASHBOARD_BUSINESS: "/dashboard/business",
 };
