@@ -1,38 +1,18 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Grid } from "@mui/material";
-import { useContext, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import ControlledCheckBox from "../../../components/Inputs/ControlledCheckBox";
 import ControlledSelect from "../../../components/Inputs/ControlledSelect";
 import Button from "../../../components/Ui/Buttons/Button";
 import { Colors } from "../../../theme/theme";
-import { BusinessDataContext } from "../LayoutBusinessDetail";
-import { EditSettings } from "./types";
-import { EditSettingsSchema, EditSettingsSchemaType } from "./validation";
+import useDashboardBusinessDetailSettings from "./useDashboardBusinessDetailSettings";
 
 const Dashboard_Business_Detail_Settings = () => {
-  const { businessData } = useContext(BusinessDataContext);
-
-  const defaultValues = {
-    taxControlActive: businessData?.taxControl?.active ?? false,
-    taxCountry: businessData?.taxControl?.taxCountry ?? "pt",
-  };
-  const [taxControlActive, setTaxControlActive] = useState(
-    businessData?.taxControl?.active ?? false
-  );
-
-  const { reset, control, handleSubmit } = useForm<EditSettingsSchemaType>({
-    resolver: zodResolver(EditSettingsSchema),
-    defaultValues,
-    mode: "onChange",
-  });
-
-  const onSubmit: SubmitHandler<EditSettingsSchemaType> = async (
-    formData: EditSettings
-  ) => {
-    console.log(formData);
-  };
-
+  const {
+    taxControlActive,
+    setTaxControlActive,
+    control,
+    handleSubmit,
+    onSubmit,
+  } = useDashboardBusinessDetailSettings();
   return (
     <>
       {" "}
