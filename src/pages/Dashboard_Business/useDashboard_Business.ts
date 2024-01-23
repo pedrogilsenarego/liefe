@@ -31,7 +31,7 @@ const useDashboard_Business = () => {
     };
     signInMutation(payload);
   };
-  return { handleCreateNewBusiness, isLoading };
+  return { handleCreateNewBusiness, isLoading, currentUser };
 };
 
 export default useDashboard_Business;

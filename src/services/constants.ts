@@ -2,7 +2,7 @@ export const queryIdentifiers = {
   USER: "USER",
   PRODUCTS: "PRODUCTS",
   PRODUCT: "PRODUCT",
-  BUSINESS: "BUSINESS",
+  BUSINESSES: "BUSINESSES",
 };
 
 export const DB = {

@@ -3,10 +3,16 @@ export const roles = {
   USER: "user",
 };
 
+export interface Bussiness {
+  businessName: string;
+  businessDocId: string;
+}
+
 export type CurrentUser = {
   username: string;
   email: string;
   features?: string[];
+  business?: Bussiness[];
   role: (typeof roles)[keyof typeof roles][];
   phone: string;
   fullName: string;
