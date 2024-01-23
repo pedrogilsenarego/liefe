@@ -6,6 +6,7 @@ interface Props {
   color?: string;
   control?: Control<any, any>;
   name: string;
+  onClick?: (value: boolean) => void;
   disabled?: boolean;
 }
 
@@ -13,6 +14,7 @@ const ControlledCheckBox = ({
   label,
   color,
   name,
+  onClick,
   control,
   disabled = false,
 }: Props) => {
@@ -23,6 +25,7 @@ const ControlledCheckBox = ({
 
   const handleLabelClick = () => {
     if (!disabled) onChange(!value);
+    if (!disabled && onClick) onClick(!value);
   };
 
   return (

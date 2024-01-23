@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Grid } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ControlledCheckBox from "../../../components/Inputs/ControlledCheckBox";
+import ControlledSelect from "../../../components/Inputs/ControlledSelect";
 import Button from "../../../components/Ui/Buttons/Button";
 import { Colors } from "../../../theme/theme";
-import { i18n } from "../../../translations/i18n";
 import { BusinessDataContext } from "../LayoutBusinessDetail";
 import { EditSettings } from "./types";
 import { EditSettingsSchema, EditSettingsSchemaType } from "./validation";
@@ -15,11 +15,16 @@ const Dashboard_Business_Detail_Settings = () => {
 
   const defaultValues = {
     taxControlActive: businessData?.taxControl?.active ?? false,
+    taxCountry: businessData?.taxControl?.taxCountry ?? "pt",
   };
+  const [taxControlActive, setTaxControlActive] = useState(
+    businessData?.taxControl?.active ?? false
+  );
 
   const { reset, control, handleSubmit } = useForm<EditSettingsSchemaType>({
     resolver: zodResolver(EditSettingsSchema),
     defaultValues,
+    mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<EditSettingsSchemaType> = async (
@@ -27,6 +32,7 @@ const Dashboard_Business_Detail_Settings = () => {
   ) => {
     console.log(formData);
   };
+
   return (
     <>
       {" "}
@@ -38,11 +44,21 @@ const Dashboard_Business_Detail_Settings = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <ControlledCheckBox
+                onClick={(value) => setTaxControlActive(value)}
                 name="taxControlActive"
                 control={control}
-                label="Tax Control"
+                label="Activate Tax Control For this business"
               />
             </Grid>
+            {taxControlActive && (
+              <Grid item xs={12}>
+                <ControlledSelect
+                  control={control}
+                  name="taxCountry"
+                  options={[{ label: "Portugal", value: "pt" }]}
+                />
+              </Grid>
+            )}
           </Grid>
         </Box>
         <Box

@@ -3,5 +3,6 @@ export interface BusinessData {
   userId: string;
   taxControl: {
     active: boolean;
+    taxCountry: string;
   };
 }

@@ -13,7 +13,7 @@ import useControlledSelect from "./useControlledSelect";
 export interface BaseReactHookFormProps {
   name: string;
   defaultLabel?: string;
-  control?: Control<any, any>;
+  control: Control<any, any>;
   setValue?: UseFormSetValue<any>;
   label?: string;
   options: { value: string; label: string }[];
