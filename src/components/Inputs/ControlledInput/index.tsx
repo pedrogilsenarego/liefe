@@ -4,7 +4,6 @@ import {
   FormControl,
   FormControlProps,
   FormHelperText,
-  IconButton,
   InputAdornment,
   InputLabel,
   TextField,
@@ -13,7 +12,7 @@ import {
 import { FC } from "react";
 import { Control, UseFormSetValue, get, useController } from "react-hook-form";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { Colors, mainColors } from "../../../theme/theme";
+import { mainColors } from "../../../theme/theme";
 import { Icons } from "../../Icons";
 import useStyles from "./styles";
 import useControlledInput from "./useControlledInput";
