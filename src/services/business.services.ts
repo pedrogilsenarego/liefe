@@ -11,6 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase/utils";
+import { BusinessData } from "../types/business";
 import { Bussiness } from "../types/user";
 import { DB } from "./constants";
 
@@ -71,7 +72,37 @@ export const businessServices = {
       throw error;
     }
   },
-  getBusiness: async (businessDocId: string) => {},
+  getBusiness: async ({
+    businessDocId,
+    userId,
+  }: {
+    businessDocId: string;
+    userId: string;
+  }) => {
+    try {
+      // Step 1: Get the business document from the 'business' collection
+      const businessDocRef = doc(db, DB.BUSINESS, businessDocId);
+      const businessDoc = await getDoc(businessDocRef);
+
+      if (businessDoc.exists()) {
+        // Step 2: Check if the user has access to this business
+        const businessData = businessDoc.data() as BusinessData;
+        if (businessData.userId === userId) {
+          // User has access, return the business data
+          return { ...businessData, docId: businessDoc.id };
+        } else {
+          // User doesn't have access, throw an error
+          throw new Error("User doesn't have access to this business");
+        }
+      } else {
+        // Business document not found, throw an error
+        throw new Error("Business document not found");
+      }
+    } catch (error) {
+      console.error("Error getting business:", error);
+      throw error;
+    }
+  },
   getBusinessDocuments: async (businessDocIds: string[]) => {
     try {
       // Create a query to get documents where the ID is in the provided array

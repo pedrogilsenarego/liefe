@@ -9,17 +9,17 @@ import { theme } from "./theme/theme";
 function App() {
   const queryClient = new QueryClient();
   return (
-    <BrowserRouter>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
               <AppRoutes />
-            </QueryClientProvider>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </LocalizationProvider>
-    </BrowserRouter>
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </LocalizationProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

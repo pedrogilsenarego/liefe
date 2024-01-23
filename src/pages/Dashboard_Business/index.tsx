@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Button from "../../components/Ui/Buttons/Button";
+import { ROUTE_PATHS } from "../../routes/constants";
 import useDashboard_Business from "./useDashboard_Business";
 
 const Dashboard_Business = () => {
+  const navigate = useNavigate();
   const { handleCreateNewBusiness, isLoading, currentUser } =
     useDashboard_Business();
   const [input, setInput] = useState("");
@@ -15,11 +18,20 @@ const Dashboard_Business = () => {
       <Button onClick={() => handleCreateNewBusiness(input)}>
         Add New Business +
       </Button>
-      <div style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}>
+      <div style={{ display: "flex", columnGap: "20px" }}>
         {currentUser?.business?.map((business) => {
           return (
             <div
+              onClick={() =>
+                navigate(
+                  ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS.replace(
+                    ":businessId",
+                    business?.businessDocId
+                  )
+                )
+              }
               style={{
+                cursor: "pointer",
                 padding: "20px",
                 backgroundColor: "lightGrey",
                 borderRadius: "10px",

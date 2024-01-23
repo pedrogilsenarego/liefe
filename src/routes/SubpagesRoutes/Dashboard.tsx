@@ -22,4 +22,8 @@ export const dashboardRoutes = [
     path: ROUTE_PATHS.DASHBOARD_BUSINESS,
     component: wrapWithLayoutAndAccess(RoutesI.DashboardBusiness),
   },
+  {
+    path: ROUTE_PATHS.DASHBOARD_BUSINESS_DETAILS,
+    component: wrapWithLayoutAndAccess(RoutesI.DashboardBusinessDetails),
+  },
 ];

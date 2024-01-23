@@ -6,4 +6,7 @@ export const RoutesI = {
   DashboardBusiness: lazyWithRetryAndLoader(
     () => import("../pages/Dashboard_Business")
   ),
+  DashboardBusinessDetails: lazyWithRetryAndLoader(
+    () => import("../pages/Dashboard_Business_Detail")
+  ),
 };
