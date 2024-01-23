@@ -1,3 +1,4 @@
+import Paper from "../../components/Ui/Paper";
 import AppsBoard from "./components/AppsBoard/AppsBoard";
 import UserBoard from "./components/UserBoard/UserBoard";
 
@@ -16,9 +17,16 @@ const DashboardLayout = ({ children }: Props) => {
       }}
     >
       <div>
-        <UserBoard />
-        <AppsBoard />
-        {children}
+        <div
+          style={{
+            height: "100px",
+            display: "flex",
+          }}
+        >
+          <UserBoard />
+          <AppsBoard />
+        </div>
+        <div style={{ marginTop: "20px" }}>{children}</div>
       </div>
     </div>
   );
