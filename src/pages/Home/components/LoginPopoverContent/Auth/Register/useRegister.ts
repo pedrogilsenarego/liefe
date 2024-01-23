@@ -23,7 +23,7 @@ const useRegister = () => {
       },
       onSettled: () => {
         reset();
-        navigate(ROUTE_PATHS.HOME);
+        navigate(ROUTE_PATHS.DASHBOARD);
       },
     }
   );

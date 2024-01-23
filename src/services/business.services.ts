@@ -79,6 +79,7 @@ export const businessServices = {
     businessDocId: string;
     userId: string;
   }) => {
+    console.log(`Getting business with ID: ${businessDocId}`);
     try {
       // Step 1: Get the business document from the 'business' collection
       const businessDocRef = doc(db, DB.BUSINESS, businessDocId);

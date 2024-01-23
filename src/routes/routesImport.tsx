@@ -7,6 +7,12 @@ export const RoutesI = {
     () => import("../pages/Dashboard_Business")
   ),
   DashboardBusinessDetails: lazyWithRetryAndLoader(
-    () => import("../pages/Dashboard_Business_Detail")
+    () => import("../pages/Dashboard_Business_Detail/Home")
+  ),
+  DashboardBusinessDetailsSettings: lazyWithRetryAndLoader(
+    () =>
+      import(
+        "../pages/Dashboard_Business_Detail/Dashboard_Business_Detail_Settings"
+      )
   ),
 };
