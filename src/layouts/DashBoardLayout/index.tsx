@@ -1,4 +1,5 @@
 import Paper from "../../components/Ui/Paper";
+import AddTransaction from "./components/AddTransaction";
 import AppsBoard from "./components/AppsBoard/AppsBoard";
 import UserBoard from "./components/UserBoard/UserBoard";
 
@@ -24,7 +25,12 @@ const DashboardLayout = ({ children }: Props) => {
             justifyContent: "space-between",
           }}
         >
-          <UserBoard />
+          <div
+            style={{ display: "flex", columnGap: "20px", alignItems: "center" }}
+          >
+            <UserBoard />
+            <AddTransaction />
+          </div>
           <AppsBoard />
         </div>
         <div style={{ marginTop: "20px" }}>{children}</div>

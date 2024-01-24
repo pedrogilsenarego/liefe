@@ -1,13 +1,15 @@
 import { Button, ButtonProps } from "@mui/material";
+import { CSSProperties } from "@mui/styles";
 import React from "react";
 import { mainColors } from "../../../../theme/theme";
 import { Icons } from "../../../Icons";
 
 interface Props extends ButtonProps {
   icon?: React.ReactNode;
+  iconStyle?: CSSProperties;
 }
 
-const AddButton = ({ icon, ...props }: Props) => {
+const AddButton = ({ icon, iconStyle, ...props }: Props) => {
   // Extract only the properties needed for your styles
   const { style, ...restProps } = props;
 
@@ -27,7 +29,11 @@ const AddButton = ({ icon, ...props }: Props) => {
       {icon ? (
         icon
       ) : (
-        <Icons.AddCircle size={"30px"} color={mainColors.secondary.contrast} />
+        <Icons.AddCircle
+          size={"30px"}
+          color={mainColors.secondary.contrast}
+          style={{ ...iconStyle }}
+        />
       )}
     </Button>
   );
