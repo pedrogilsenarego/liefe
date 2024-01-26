@@ -17,6 +17,7 @@ interface BaseProps extends FormControlProps, BaseReactHookFormProps {
 const DateInput: React.FC<BaseProps> = (props) => {
   const { name, control, label } = props;
   const { errors, error } = useDateControlledInput({ name, control });
+
   return (
     <FormControl error={!!errors[name]} fullWidth>
       <Controller

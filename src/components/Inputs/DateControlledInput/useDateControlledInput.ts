@@ -13,9 +13,10 @@ const useDateControlledInput = ({ name, control }: Props) => {
     name,
     control,
   });
+
   const error = get(errors, name, "");
   const hasError = Boolean(error?.message);
-  return { hasError, field, isSubmitting, errors, error };
+  return { hasError, isSubmitting, errors, error };
 };
 
 export default useDateControlledInput;
