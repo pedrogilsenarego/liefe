@@ -12,6 +12,7 @@ import Button from "../../../../components/Ui/Buttons/Button";
 import { categories } from "../../../../constants/categories";
 import { State } from "../../../../redux/types";
 import { CurrentUser } from "../../../../types/user";
+import Details from "./Details";
 import { AddExpenseSchema, AddExpenseSchemaType } from "./validation";
 
 const AddTransaction = () => {
@@ -25,8 +26,9 @@ const AddTransaction = () => {
     category: categories[0].value,
     amount: "0",
     dateTransaction: new Date(),
+    note: "",
   };
-  const { control, handleSubmit, watch } = useForm<AddExpenseSchemaType>({
+  const { control, handleSubmit } = useForm<AddExpenseSchemaType>({
     resolver: zodResolver(AddExpenseSchema),
     defaultValues,
     mode: "onChange",
@@ -74,6 +76,12 @@ const AddTransaction = () => {
                 control={control}
                 name="amount"
               />
+              <ControlledFormInput
+                name="note"
+                inputPlaceholder="Note"
+                control={control}
+              />
+              <Details control={control} />
               <Button fullWidth darkenColors type="submit">
                 Add expense
               </Button>

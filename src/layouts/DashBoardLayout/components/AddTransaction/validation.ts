@@ -4,6 +4,7 @@ export const AddExpenseSchema = z.object({
   dateTransaction: z.any(),
   business: z.string(),
   category: z.string(),
+  note: z.string(),
   amount: z.string().refine(
     (value) => {
       const parsedValue = parseFloat(value);
