@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -11,6 +12,8 @@ import AddButton from "../../../../components/Ui/Buttons/AddButton";
 import Button from "../../../../components/Ui/Buttons/Button";
 import { categories } from "../../../../constants/categories";
 import { State } from "../../../../redux/types";
+import { businessServices } from "../../../../services/business.services";
+import { queryIdentifiers } from "../../../../services/constants";
 import { CurrentUser } from "../../../../types/user";
 import Details from "./Details";
 import { AddExpenseSchema, AddExpenseSchemaType } from "./validation";
@@ -20,6 +23,7 @@ const AddTransaction = () => {
   const currentUser = useSelector<State, CurrentUser | null>(
     (state) => state.user.currentUser
   );
+  const userId = currentUser?.docId || "";
 
   const defaultValues = {
     business: currentUser?.business?.[0]?.businessDocId || "",
@@ -28,11 +32,35 @@ const AddTransaction = () => {
     dateTransaction: new Date(),
     note: "",
   };
-  const { control, handleSubmit } = useForm<AddExpenseSchemaType>({
+
+  const { control, handleSubmit, watch } = useForm<AddExpenseSchemaType>({
     resolver: zodResolver(AddExpenseSchema),
     defaultValues,
     mode: "onChange",
   });
+
+  const watchBusiness = watch("business");
+  const businessId =
+    currentUser?.business?.find(
+      (business) => business.businessDocId === watchBusiness
+    )?.businessDocId || "";
+  const businessDocId = businessId || "";
+
+  const queryKey = [queryIdentifiers.BUSINESS_DETAIL, businessId];
+  const {
+    data: businessData,
+    isLoading,
+    isError,
+    error: businessError,
+    refetch,
+  } = useQuery(
+    queryKey,
+    () => businessServices.getBusiness({ businessDocId, userId }),
+    {
+      refetchOnWindowFocus: false,
+      enabled: !!businessDocId || !!userId || !open,
+    }
+  );
 
   const onSubmit: SubmitHandler<AddExpenseSchemaType> = async (formData) => {
     console.log(formData);
@@ -81,7 +109,7 @@ const AddTransaction = () => {
                 inputPlaceholder="Note"
                 control={control}
               />
-              <Details control={control} />
+              <Details control={control} businessData={businessData} />
               <Button fullWidth darkenColors type="submit">
                 Add expense
               </Button>

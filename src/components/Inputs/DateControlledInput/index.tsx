@@ -1,7 +1,7 @@
 import { FormControl, FormControlProps, FormHelperText } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
-import { Control, Controller, UseFormSetValue } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import useDateControlledInput from "./useDateControlledInput";
 
 interface BaseReactHookFormProps {
