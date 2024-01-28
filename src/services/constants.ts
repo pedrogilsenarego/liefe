@@ -9,4 +9,5 @@ export const DB = {
   PRODUCTS: "products",
   USERS: "users",
   BUSINESS: "business",
+  EXPENSES: "expenses",
 };

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -14,8 +14,10 @@ import { categories } from "../../../../constants/categories";
 import { State } from "../../../../redux/types";
 import { businessServices } from "../../../../services/business.services";
 import { queryIdentifiers } from "../../../../services/constants";
+import { expensesServices } from "../../../../services/expenses.services";
 import { CurrentUser } from "../../../../types/user";
 import Details from "./Details";
+import formMapper from "./mapper";
 import { AddExpenseSchema, AddExpenseSchemaType } from "./validation";
 
 const AddTransaction = () => {
@@ -62,15 +64,28 @@ const AddTransaction = () => {
     }
   );
 
-  const onSubmit: SubmitHandler<AddExpenseSchemaType> = async (formData) => {
-    console.log(formData);
+  const { mutate: addExpense, isLoading: isAddingExpense } = useMutation(
+    expensesServices.addNewExpense,
+    {
+      onError: (error: any) => {
+        console.log("error", error);
+      },
+      onSuccess: () => {
+        setOpen(false);
+      },
+    }
+  );
 
-    //   const mappedData = formMapper(formData);
-    //   editSettingsBusiness({
-    //     businessDocId: businessData?.docId,
-    //     userId: businessData?.userId,
-    //     settings: mappedData,
-    //   });
+  const onSubmit: SubmitHandler<AddExpenseSchemaType> = async (formData) => {
+    if (!userId || !businessData?.docId) return;
+    const mappedData = formMapper(
+      formData,
+      userId,
+      businessData?.docId,
+      businessData?.settings
+    );
+
+    addExpense({ data: mappedData });
   };
   if (!currentUser?.business) return null;
   return (

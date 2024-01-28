@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { Control } from "react-hook-form";
-import { BusinessData } from "../../../../../types/business";
 
 interface Props {
   control?: Control<any, any>;
@@ -17,7 +16,9 @@ const Details = ({ control, businessData }: Props) => {
       </Typography>
       {openDetails && (
         <div>
-          <Typography color="black">{businessData.businessName}</Typography>
+          <Typography color="black">
+            Taxes for Country:{businessData.settings.taxControl.taxCountry}
+          </Typography>
         </div>
       )}
     </div>

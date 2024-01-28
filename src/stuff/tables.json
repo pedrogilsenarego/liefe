@@ -1,0 +1,44 @@
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    password_hash VARCHAR(255)
+);
+
+CREATE TABLE Businesses (
+    business_id INT PRIMARY KEY,
+    user_id INT,
+    business_name VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+CREATE TABLE Schedules (
+    schedule_id INT PRIMARY KEY,
+    business_id INT,
+    schedule_tag VARCHAR(50),
+    start_time TIME,
+    end_time TIME,
+    day_of_week VARCHAR(15),
+    FOREIGN KEY (business_id) REFERENCES Businesses(business_id)
+);
+
+CREATE TABLE BusinessTransactions (
+    transaction_id INT PRIMARY KEY,
+    user_id INT,
+    business_id INT,
+    amount DECIMAL(10,2),
+    category VARCHAR(50),
+    description VARCHAR(255),
+    date DATE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (business_id) REFERENCES Businesses(business_id)
+);
+
+CREATE TABLE BusinessSettings (
+    setting_id INT PRIMARY KEY,
+    business_id INT,
+    tax_control BOOLEAN,
+    iva_control BOOLEAN,
+    irs_control BOOLEAN,
+    FOREIGN KEY (business_id) REFERENCES Businesses(business_id)
+);

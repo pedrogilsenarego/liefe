@@ -37,7 +37,7 @@ const LayoutBusinessDetail = ({ children }: Props) => {
   const businessDocId = businessId || "";
   const userId = currentUser?.docId || "";
   const location = useLocation();
-  // Use useQuery hook to fetch business details
+
   const {
     data: businessData,
     isLoading,
@@ -65,8 +65,6 @@ const LayoutBusinessDetail = ({ children }: Props) => {
     // Return a message or component indicating that businessDocId or userID is null
     return <div>Business ID or User ID is missing</div>;
   }
-
-  console.log(location.pathname);
 
   return (
     <BusinessDataContext.Provider value={{ businessData, refetch }}>
