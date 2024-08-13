@@ -1,3 +1,5 @@
+import { GridMenuIcon } from "@mui/x-data-grid";
+
 function App() {
   return (
     <div
@@ -8,7 +10,11 @@ function App() {
         height: "100vh",
       }}
     >
-      teste
+      <GridMenuIcon
+        sx={{
+          color: "black",
+        }}
+      />
     </div>
   );
 }
